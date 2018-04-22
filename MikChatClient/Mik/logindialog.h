@@ -42,8 +42,6 @@ public:
     explicit LoginDialog(QWidget *parent = 0);
     ~LoginDialog();
 
-    //QByteArray toStream(int cmdType, QJsonObject &jo);
-
 private slots:
     void on_LoginPushButton_clicked();
     void on_registerPushButton_clicked();

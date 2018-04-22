@@ -11,7 +11,6 @@
 #include "utils/defines.h"
 #include <QDebug>
 
-/// TODO 客户端重连功能
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LoginDialog),
@@ -42,17 +41,6 @@ LoginDialog::~LoginDialog()
     delete ui;
 }
 
-
-//QByteArray LoginDialog::toStream(int cmdType, QJsonObject &jo)
-//{
-//    QByteArray msgSend;
-//    QDataStream stream(&msgSend, QIODevice::WriteOnly);
-//    QByteArray msgJo = QJsonDocument(jo).toJson();
-//    stream << cmdType;
-//    stream.writeRawData(msgJo.toStdString().c_str(), msgJo.size());
-//    return msgSend;
-//}
-
 void LoginDialog::on_LoginPushButton_clicked()
 {
     /// 检查账户名称是否已注册
@@ -62,11 +50,6 @@ void LoginDialog::on_LoginPushButton_clicked()
         QMessageBox::information(this, QStringLiteral("Error"), QStringLiteral("Account num must not be null!"));
         return;
     }
-//    if (!m_nativeAccount.contains(accountNumInUI))
-//    {
-//        QMessageBox::information(this, QStringLiteral("Error"), QStringLiteral("The account has not been registered!"));
-//        return;
-//    }
 
     /// 检查密码
     const QString accountPasswordInUI = ui->userPasswordLineEdit->text();

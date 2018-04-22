@@ -55,7 +55,6 @@ signals:
 private:
     Ui::MainWindow *ui;
 
-    //LoginDialog *logindialog;
     QScopedPointer<LoginDialog> m_loginDialog;
     QTcpSocket *m_socket = nullptr;
     /// 这个状态变量用好友id保存好友列表，需要一个数据结构来保存所有好友的个人信息（包括账号，昵称，头像，生日，邮箱，上次登陆时间）
