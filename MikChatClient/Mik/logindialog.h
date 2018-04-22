@@ -72,7 +72,7 @@ private:
     uint m_serverPort;
 
     /// 本地所有账户
-    QHash<QString ,ACCOUNTSAVEINFO> m_nativeAccount;
+    QHash<QString, ACCOUNTSAVEINFO> m_nativeAccount;
 };
 
 #endif // MIK_LOGINDIALOG_H

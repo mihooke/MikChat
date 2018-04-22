@@ -9,7 +9,7 @@ const QString key_issave_password = "issave_password";
 
 const QString remPwdFile = "rememberpassword.json";
 
-const QString temp_ip = "192.168.1.111";
+const QString temp_ip = "127.0.0.1";//"192.168.1.111";
 const quint16 temp_port = 9527;
 
 const QString key_send_user_name = "send_user_name";

@@ -48,6 +48,9 @@ private slots:
     void on_socketError(QAbstractSocket::SocketError socketError);
     void on_reconnect();
 
+private:
+    void startReconnectTimer();
+
 signals:
     void recvLoginVerify(QJsonObject &jo);
     void recvRegister(QJsonObject &jo);

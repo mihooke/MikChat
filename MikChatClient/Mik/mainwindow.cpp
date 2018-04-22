@@ -1,5 +1,6 @@
 ﻿#include <QMessageBox>
 #include <QTimer>
+#include <QtConcurrent/QtConcurrent>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "personalinfosdialog.h"
@@ -47,7 +48,6 @@ bool MainWindow::checkConnectToServer(const QString &ip, const uint port)
             return false;
         }
     }
-    qDebug() << "connect to server success";
     return true;
 }
 
@@ -223,23 +223,11 @@ void MainWindow::updatePersonalInfosDisplay()
 
 void MainWindow::on_socketError(QAbstractSocket::SocketError socketError)
 {
-    switch (socketError)
-    {
-    case QAbstractSocket::RemoteHostClosedError:
-        qDebug() << "The chat server is not running!";
-        break;
-    case QAbstractSocket::HostNotFoundError:
-        qDebug() << "The server is not found, check IP&port";
-        break;
-    case QAbstractSocket::ConnectionRefusedError:
-        qDebug() << "The connection is refused by the server, please assure server is running";
-        break;
-    default:
-        qDebug() << m_socket->errorString();
-        break;
-    }
+    Q_UNUSED(socketError);
+    qDebug() << m_socket->errorString();
 
-    QTimer::singleShot(2000, this, &MainWindow::on_reconnect);
+    /// TODO 重连机制此做法欠妥，会造成界面卡顿，需重新实现，一个思路是：把socket放到一个thread中去，在mainwindow中开启关闭此thread
+    QtConcurrent::run(this, &MainWindow::startReconnectTimer);
 }
 
 void MainWindow::on_reconnect()
@@ -255,4 +243,9 @@ void MainWindow::on_reconnect()
             this, &MainWindow::on_socketError);
     m_socket->connectToHost(temp_ip, temp_port);
     m_socket->waitForConnected();
+}
+
+void MainWindow::startReconnectTimer()
+{
+    QTimer::singleShot(2000, this, &MainWindow::on_reconnect);
 }
