@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     widgets/chattablesubwidget.cpp \
     trivial/tablewidgetautowarp.cpp \
     utils/util.cpp \
-    utils/defines.cpp
+    utils/defines.cpp \
+    utils/logging.cpp
 
 HEADERS  += mainwindow.h \
     logindialog.h \
@@ -51,7 +52,8 @@ HEADERS  += mainwindow.h \
     widgets/chattablesubwidget.h \
     trivial/tablewidgetautowarp.h \
     utils/util.h \
-    utils/defines.h
+    utils/defines.h \
+    utils/logging.h
 
 FORMS    += mainwindow.ui \
     logindialog.ui \
